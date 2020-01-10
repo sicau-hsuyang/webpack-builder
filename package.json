@@ -1,0 +1,37 @@
+{
+  "name": "webpack-builder",
+  "version": "1.0.0",
+  "description": "this is a build tool for javascript ",
+  "main": "index.js",
+  "scripts": {
+    "build": "webpack --progress --color --inline --config build/webpack.config.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Sicau-HsuYang/webpack-builder.git"
+  },
+  "keywords": [
+    "build",
+    "tool"
+  ],
+  "author": "john-yang",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Sicau-HsuYang/webpack-builder/issues"
+  },
+  "homepage": "https://github.com/Sicau-HsuYang/webpack-builder#readme",
+  "devDependencies": {
+    "@babel/cli": "^7.7.7",
+    "@babel/core": "^7.7.7",
+    "@babel/plugin-syntax-dynamic-import": "^7.7.4",
+    "babel-loader": "^8.0.6",
+    "css-loader": "^3.4.1",
+    "node-sass": "^4.13.0",
+    "sass-loader": "^8.0.0",
+    "vue-loader": "^15.8.3",
+    "vue-style-loader": "^4.1.2",
+    "vue-template-compiler": "^2.6.11",
+    "webpack": "^4.41.5",
+    "webpack-cli": "^3.3.10"
+  }
+}
