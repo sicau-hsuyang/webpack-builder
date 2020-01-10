@@ -6,6 +6,7 @@ module.exports = {
   entry: './index.js', //入口文件,从项目根目录指定
   target: 'web',
   output: {
+    // 需要打包的文件
     library: 'PaginationTable',
     libraryTarget: 'umd',
     umdNamedDefine: true,
