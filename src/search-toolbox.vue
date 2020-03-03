@@ -1,64 +1,70 @@
 <template>
+  <div
+    class="search-row"
+    :gutter="20"
+  >
     <div
-        class="search-row"
-        :gutter="20"
+      ref="row"
+      class="search-row-toolbox"
     >
+      <template v-for="(column) in searchs">
         <div
-            ref="row"
-            class="search-row-toolbox"
+          :key="column.prop"
+          class="form-ctrl-group"
         >
-            <template v-for="(column) in searchs">
-                <div
-                    :key="column.prop"
-                    class="form-ctrl-group"
-                >
-                    <span class="form-ctrl-lbl">
-                        {{ column.label }}:
-                    </span>
-                    <component
-                        :is="column.component"
-                        v-if="column.component"
-                        v-model="column.value"
-                        class="form-ctrl"
-                    ></component>
-                    <el-select
-                        v-else-if="Array.isArray(column.options)"
-                        v-model="column.value"
-                        :multiple="column.multi"
-                        clearable
-                        :placeholder="'请选择'+(column.label || '')"
-                        class="form-select"
-                    >
-                        <el-option
-                            v-for="(option, optIdx) in column.options"
-                            :key="optIdx"
-                            :value="option.value"
-                            :label="option.label"
-                        ></el-option>
-                    </el-select>
-                    <el-input
-                        v-else
-                        v-model="column.value"
-                        clearable
-                        class="form-ctrl"
-                        :placeholder="'请输入'+(column.label || '')"
-                    ></el-input>
-                </div>
-            </template>
+          <span class="form-ctrl-lbl">
+            {{ column.label }}:
+          </span>
+          <component
+            :is="column.component"
+            v-if="column.component"
+            v-model="column.value"
+            class="form-ctrl"
+          />
+          <el-select
+            v-else-if="Array.isArray(column.options)"
+            v-model="column.value"
+            :multiple="column.multi"
+            clearable
+            :placeholder="'请选择'+(column.label || '')"
+            class="form-select"
+          >
+            <el-option
+              v-for="(option, optIdx) in column.options"
+              :key="optIdx"
+              :value="option.value"
+              :label="option.label"
+            />
+          </el-select>
+          <el-input
+            v-else
+            v-model="column.value"
+            clearable
+            class="form-ctrl"
+            :placeholder="'请输入'+(column.label || '')"
+          />
         </div>
-        <div class="search-row-buttons">
-            <el-button
-                type="primary"
-                @click="handleQuery"
-            >查询</el-button>
-            <el-button @click="handleReset">重置</el-button>
-            <el-button
-                v-if="config.columnConfigurable"
-                type="primary"
-                @click="tableSetting"
-            >设置</el-button>
-        </div>
+      </template>
     </div>
+    <div class="search-row-buttons">
+      <el-button
+        type="primary"
+        @click="handleQuery"
+      >
+        查询
+      </el-button>
+      <el-button @click="handleReset">
+        重置
+      </el-button>
+      <el-button
+        v-if="config.columnConfigurable"
+        type="primary"
+        @click="tableSetting"
+      >
+        设置
+      </el-button>
+    </div>
+  </div>
 </template>
 
 <script>

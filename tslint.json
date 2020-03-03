@@ -1,0 +1,16 @@
+{
+  "extends": "tslint-config-standard",
+  "globals": {
+    "require": true
+  },
+  "no-implicit-dependencies": [
+    true,
+    [
+      "src"
+    ]
+  ],
+  "no-submodule-imports": [
+    true,
+    "src"
+  ]
+}

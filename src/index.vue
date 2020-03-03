@@ -1,80 +1,79 @@
 <template>
-    <div class="base-table">
-        <column-ctrl-dialog
-            ref="dialog"
-            @submit="confirmConfig"
-            v-if="meta.columnConfigurable"
-            :columns="columns"
-        ></column-ctrl-dialog>
-        <template v-if="meta.showSearchbox">
-            <search-toolbox
-                ref="search"
-                :config="{ columnConfigurable: meta.columnConfigurable }"
-                :columns="columns"
-                @table-setting="tableSetting"
-                @query="handleQuery"
-            />
-            <div class="divider"></div>
+  <div class="base-table">
+    <column-ctrl-dialog
+      v-if="meta.columnConfigurable"
+      ref="dialog"
+      :columns="columns"
+      @submit="confirmConfig"
+    />
+    <template v-if="meta.showSearchbox">
+      <search-toolbox
+        ref="search"
+        :config="{ columnConfigurable: meta.columnConfigurable }"
+        :columns="columns"
+        @table-setting="tableSetting"
+        @query="handleQuery"
+      />
+      <div class="divider" />
+    </template>
+    <slot name="toolbox" />
+    <el-table
+      ref="table"
+      v-loading="loading"
+      element-loading-text="拼命加载中"
+      element-loading-spinner="el-icon-loading"
+      :highlight-current-row="meta.highLightCurrentRow"
+      :row-key="meta.rowKey"
+      :stripe="meta.stripe"
+      :span-method="meta.spanMethod"
+      :height="meta.height"
+      :show-header="meta.showHeader"
+      :default-sort="meta.defaultSort"
+      :tree-props="meta.treeProps"
+      :border="meta.border"
+      :data="tableList"
+      @sort-change="handleSortChange"
+      @selection-change="handleSelectionChange"
+    >
+      <el-table-column
+        v-if="meta.showCheckbox"
+        width="40"
+        type="selection"
+      />
+      <base-column
+        v-for="(column,prop) in columns"
+        :key="prop"
+        :column="column"
+        :prop="prop"
+        @loaded="handleColumnMounted"
+      />
+      <el-table-column
+        v-if="typeof meta.showOperation !== 'undefined'"
+        label="操作"
+      >
+        <template slot-scope="{ row, index }">
+          <table-column-helper
+            :render="meta.showOperation.render"
+            :row="row"
+            :index="index"
+          />
         </template>
-        <slot name="toolbox"></slot>
-        <el-table
-            ref="table"
-            v-loading="loading"
-            element-loading-text="拼命加载中"
-            element-loading-spinner="el-icon-loading"
-            :highlight-current-row="meta.highLightCurrentRow"
-            :row-key="meta.rowKey"
-            :stripe="meta.stripe"
-            :span-method="meta.spanMethod"
-            :height="meta.height"
-            :show-header="meta.showHeader"
-            :default-sort="meta.defaultSort"
-            :tree-props="meta.treeProps"
-            :border="meta.border"
-            :data="tableList"
-            @sort-change="handleSortChange"
-            @selection-change="handleSelectionChange"
-        >
-            <el-table-column
-                v-if="meta.showCheckbox"
-                width="40"
-                type="selection"
-            ></el-table-column>
-            <base-column
-                @loaded="handleColumnMounted"
-                v-for="(column,prop) in columns"
-                :key="prop"
-                :column="column"
-                :prop="prop"
-            ></base-column>
-            <el-table-column
-                v-if="typeof meta.showOperation !== 'undefined'"
-                label="操作"
-            >
-                <template slot-scope="{ row, index }">
-                    <table-column-helper
-                        :render="meta.showOperation.render"
-                        :row="row"
-                        :index="index"
-                    ></table-column-helper>
-                </template>
-            </el-table-column>
-        </el-table>
-        <el-pagination
-            v-if="meta.showPagination"
-            class="pagination-wrapper"
-            :current-page="currentPage"
-            :page-sizes="meta.pageSizeOptions"
-            :page-size="pageSize"
-            layout="total, sizes, prev, pager, next, jumper"
-            :total="total"
-            prev-text="上一页"
-            next-text="下一页"
-            @size-change="handleSizeChange"
-            @current-change="handleCurrentChange"
-        />
-    </div>
-
+      </el-table-column>
+    </el-table>
+    <el-pagination
+      v-if="meta.showPagination"
+      class="pagination-wrapper"
+      :current-page="currentPage"
+      :page-sizes="meta.pageSizeOptions"
+      :page-size="pageSize"
+      layout="total, sizes, prev, pager, next, jumper"
+      :total="total"
+      prev-text="上一页"
+      next-text="下一页"
+      @size-change="handleSizeChange"
+      @current-change="handleCurrentChange"
+    />
+  </div>
 </template>
 
 <script>
@@ -208,8 +207,8 @@ export default {
                     return direction === null
                         ? null
                         : direction === "ascending"
-                        ? "ASC"
-                        : "DESC";
+                            ? "ASC"
+                            : "DESC";
                 },
                 columnConfigurable: true
             };
@@ -273,10 +272,10 @@ export default {
             this.loading = true;
             const distParams = this.meta.showPagination
                 ? {
-                      pageNum: this.currentPage,
-                      pageSize: this.pageSize,
-                      ...queryParams
-                  }
+                    pageNum: this.currentPage,
+                    pageSize: this.pageSize,
+                    ...queryParams
+                }
                 : queryParams;
             const sortParams = {
                 [this.meta.orderField]: this.meta.defaultSort.prop,

@@ -1,32 +1,31 @@
 <template>
-    <el-table-column
-        v-if="config.visible"
-        :prop="prop"
-        :label="config.label"
-        :show-overflow-tooltip="config.showOverflowTooltip"
-        :width="config.width"
-        :min-width="config.minWidth"
-        :max-width="config.maxWidth"
-        :sort-method="config.sortMethod"
-        :sortable="config.sortable"
-        :align="config.align"
-    >
-        <template slot-scope="{ row }">
-            <TableColumnHelper
-                v-if="typeof config.render === 'function'"
-                :render="column.render"
-                :row="row"
-            ></TableColumnHelper>
-            <div
-                v-else-if="typeof config.html === 'function'"
-                v-html="config.html(row[prop], row)"
-            >
-            </div>
-            <span v-else>
-                {{ typeof config.formatter === 'function' ? renderContent(config.formatter(row[prop], row)) : renderContent(row[prop], row) }}
-            </span>
-        </template>
-    </el-table-column>
+  <el-table-column
+    v-if="config.visible"
+    :prop="prop"
+    :label="config.label"
+    :show-overflow-tooltip="config.showOverflowTooltip"
+    :width="config.width"
+    :min-width="config.minWidth"
+    :max-width="config.maxWidth"
+    :sort-method="config.sortMethod"
+    :sortable="config.sortable"
+    :align="config.align"
+  >
+    <template slot-scope="{ row }">
+      <TableColumnHelper
+        v-if="typeof config.render === 'function'"
+        :render="column.render"
+        :row="row"
+      />
+      <div
+        v-else-if="typeof config.html === 'function'"
+        v-html="config.html(row[prop], row)"
+      />
+      <span v-else>
+        {{ typeof config.formatter === 'function' ? renderContent(config.formatter(row[prop], row)) : renderContent(row[prop], row) }}
+      </span>
+    </template>
+  </el-table-column>
 </template>
 
 <script lang="javascript">

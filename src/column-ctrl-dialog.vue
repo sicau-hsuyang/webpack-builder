@@ -1,43 +1,46 @@
 <template>
-    <el-dialog
-        class="cfg-dialog"
-        title="配置表格列"
-        :visible.sync='visible'
-        @open="handleOpen"
-        :before-close="handleClose"
+  <el-dialog
+    class="cfg-dialog"
+    title="配置表格列"
+    :visible.sync="visible"
+    :before-close="handleClose"
+    @open="handleOpen"
+  >
+    <el-table
+      border
+      stripe
+      :data="data"
     >
-        <el-table
-            border
-            stripe
-            :data="data"
-        >
-            <el-table-column
-                prop="label"
-                label="表格字段"
-            ></el-table-column>
-            <el-table-column
-                width="140"
-                align="center"
-                label="操作"
-            >
-                <template slot-scope="{ row }">
-                    <el-switch
-                        active-text="显示"
-                        inactive-text="隐藏"
-                        v-model="row.visible"
-                    ></el-switch>
-                </template>
-
-            </el-table-column>
-        </el-table>
-        <div slot="footer">
-            <el-button @click="handleClose">关闭</el-button>
-            <el-button
-                type='primary'
-                @click="handleConfirm"
-            >确定</el-button>
-        </div>
-    </el-dialog>
+      <el-table-column
+        prop="label"
+        label="表格字段"
+      />
+      <el-table-column
+        width="140"
+        align="center"
+        label="操作"
+      >
+        <template slot-scope="{ row }">
+          <el-switch
+            v-model="row.visible"
+            active-text="显示"
+            inactive-text="隐藏"
+          />
+        </template>
+      </el-table-column>
+    </el-table>
+    <div slot="footer">
+      <el-button @click="handleClose">
+        关闭
+      </el-button>
+      <el-button
+        type="primary"
+        @click="handleConfirm"
+      >
+        确定
+      </el-button>
+    </div>
+  </el-dialog>
 </template>
 
 <script>
