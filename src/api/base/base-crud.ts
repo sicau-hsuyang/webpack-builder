@@ -1,16 +1,16 @@
-import { HttpCRUDResponse } from '@/types'
+import { HttpResponse } from '@/types'
 import BaseService from './base';
 
 export default abstract class BaseCRUDService<T> extends BaseService {
-  abstract findAll(): Promise<HttpCRUDResponse<T[]>>
+  abstract findAll(): Promise<HttpResponse<T[]>>
 
-  abstract find(id: string): Promise<HttpCRUDResponse<T>>
+  abstract find(id: string): Promise<HttpResponse<T>>
 
-  abstract create(model: T): Promise<void>
+  abstract create(model: T): Promise<HttpResponse<void>>
 
-  abstract update(model: T): Promise<HttpCRUDResponse<T>>
+  abstract update(model: T): Promise<HttpResponse<T>>
 
-  abstract remove(id: string): Promise<void>
+  abstract remove(id: string): Promise<HttpResponse<void>>
 
-  abstract batchRemove(ids: string[]): Promise<HttpCRUDResponse<T>
+  abstract batchRemove(ids: string[]): Promise<HttpResponse<void>
 }

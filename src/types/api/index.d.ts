@@ -1,11 +1,9 @@
-export declare interface HttpResponse {
+export declare interface HttpResponse<T> {
   status: boolean
 
   code: number
 
   msg?: string
-}
 
-export declare interface HttpCRUDResponse<T> extends HttpResponse {
-  data: T | T[]
+  data?: T
 }
