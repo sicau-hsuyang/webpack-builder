@@ -1,14 +1,11 @@
 export declare interface HttpResponse {
+  status: boolean
 
-  status: boolean;
+  code: number
 
-  code: number;
-
-  msg?: string;
-
-  data?: Array<any>
+  msg?: string
 }
 
-export declare interface ExportAction {
-  doExport: () => void
+export declare interface HttpCRUDResponse<T> extends HttpResponse {
+  data: T | T[]
 }

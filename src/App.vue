@@ -14,26 +14,19 @@
 import { Component, Vue } from 'vue-property-decorator'
 import HelloWorld from '@/components/HelloWorld.vue'
 import LoginView from '@/views/Login.vue'
-import Demo from '@/components/Demo.vue'
-import DemoClass from '@/components/DemoClass.vue'
 
 @Component({
   name: 'App',
   components: {
     HelloWorld,
-    LoginView,
-    Demo,
-    DemoClass
+    LoginView
   }
 })
-export default class App extends Vue {
-
-}
-
+export default class App extends Vue {}
 </script>
 
 <style lang="scss">
-  #app{
-    display: flex
-  }
+#app {
+  display: flex;
+}
 </style>

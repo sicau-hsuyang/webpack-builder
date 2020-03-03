@@ -1,16 +1,52 @@
 {
-  "extends": "tslint-config-standard",
-  "globals": {
-    "require": true
-  },
-  "no-implicit-dependencies": [
-    true,
-    [
-      "src"
-    ]
+  "defaultSeverity": "warning",
+  "extends": [
+    "tslint:recommended"
   ],
-  "no-submodule-imports": [
-    true,
-    "src"
-  ]
+  "linterOptions": {
+    "exclude": [
+      "node_modules/**",
+      "*/**/*.js"
+    ]
+  },
+  "rules": {
+    "quotemark": [
+      true,
+      "single",
+      "jsx-double"
+    ],
+    "indent": [
+      true,
+      "spaces",
+      2
+    ],
+    "interface-name": false,
+    "ordered-imports": false,
+    "object-literal-sort-keys": false,
+    "no-consecutive-blank-lines": false,
+    "object-literal-key-quotes": [
+      true,
+      "as-needed"
+    ],
+    "member-access": false,
+    "trailing-comma": true,
+    "no-console": false,
+    "no-for-in-array": false,
+    "arrow-parens": false,
+    "no-shadowed-variable": false,
+    "no-string-literal": false,
+    "prefer-const": false,
+    "no-empty": false,
+    "curly": false,
+    "callable-types": false,
+    "variable-name": false,
+    "no-unused-expression": false,
+    "no-namespace": false,
+    "max-line-length": false,
+    "triple-equals": false,
+    "one-variable-per-declaration": false,
+    "forin": false,
+    "prefer-for-of": false,
+    "no-var-requires": false
+  }
 }
