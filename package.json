@@ -4,7 +4,7 @@
   "description": "this is a build tool for javascript ",
   "main": "index.js",
   "scripts": {
-    "build": "webpack --progress --color --inline --config build/webpack.config.js"
+    "build": "cross-env NODE_ENV=production webpack --progress --color --inline --config build/webpack.config.js --lib=HelloWorld"
   },
   "repository": {
     "type": "git",
@@ -24,14 +24,33 @@
     "@babel/cli": "^7.7.7",
     "@babel/core": "^7.7.7",
     "@babel/plugin-syntax-dynamic-import": "^7.7.4",
+    "@types/webpack-env": "^1.15.2",
+    "autoprefixer": "^9.8.5",
     "babel-loader": "^8.0.6",
+    "cross-env": "^7.0.2",
     "css-loader": "^3.4.1",
+    "file-loader": "^6.0.0",
+    "mini-css-extract-plugin": "^0.9.0",
     "node-sass": "^4.13.0",
+    "postcss-loader": "^3.0.0",
     "sass-loader": "^8.0.0",
+    "ts-loader": "^8.0.1",
+    "typescript": "^3.9.7",
+    "url-loader": "^4.1.0",
+    "vue-class-component": "^7.2.5",
     "vue-loader": "^15.8.3",
+    "vue-property-decorator": "^9.0.0",
     "vue-style-loader": "^4.1.2",
     "vue-template-compiler": "^2.6.11",
     "webpack": "^4.41.5",
     "webpack-cli": "^3.3.10"
-  }
+  },
+  "dependencies": {
+    "vue": "^2.6.11"
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead"
+  ]
 }
